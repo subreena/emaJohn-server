@@ -12,6 +12,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get('/' , (req, res) =>{
+    res.send("Hello from Db. It works")
+})
+
 const client = new MongoClient(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -60,7 +64,7 @@ client.connect(err => {
 
             })
     })
-
+    
     app.post('/addOrder', (req, res) => {
         const order = req.body;
         ordersCollection.insertOne(order)
